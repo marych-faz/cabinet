@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление партнерами</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header i {
+            font-size: 24px;
+            color: #3b82f6;
+            margin-right: 10px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        input, select, button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2563eb;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        th:hover {
+            background-color: #f1f5f9;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .active {
+            background-color: #ecfdf5;
+            color: #10b981;
+        }
+        .archived {
+            background-color: #fef2f2;
+            color: #ef4444;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+        }
+        .sort-icon {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-handshake"></i>
+        <h1>Управление партнерами</h1>
+    </div>
+
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Поиск по имени, email или телефону...">
+        <select id="statusFilter">
+            <option value="all">Все статусы</option>
+            <option value="active">Только активные</option>
+            <option value="archived">Только архивные</option>
+        </select>
+        <button id="resetBtn"><i class="fas fa-undo"></i> Сбросить</button>
+    </div>
+
+    <div id="loading" class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Загрузка данных...
+    </div>
+
+    <table id="partnersTable" style="display: none;">
+        <thead>
+            <tr>
+                <th data-sort="name">Имя <i class="fas fa-sort sort-icon"></i></th>
+                <th data-sort="email">Email</th>
+                <th data-sort="phone">Телефон</th>
+                <th data-sort="dog_num">Договор</th>
+                <th data-sort="is_archived">Статус</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM элементы
+            const searchInput = document.getElementById('searchInput');
+            const statusFilter = document.getElementById('statusFilter');
+            const resetBtn = document.getElementById('resetBtn');
+            const loadingEl = document.getElementById('loading');
+            const tableEl = document.getElementById('partnersTable');
+            const tableBody = document.getElementById('tableBody');
+            const sortHeaders = document.querySelectorAll('th[data-sort]');
+            
+            // Данные и состояние
+            let partners = [];
+            let currentSort = { field: 'name', direction: 'asc' };
+            
+            // Инициализация
+            loadFilters();
+            loadData();
+            
+            // Обработчики событий
+            searchInput.addEventListener('input', debounce(applyFilters, 300));
+            statusFilter.addEventListener('change', applyFilters);
+            resetBtn.addEventListener('click', resetFilters);
+            
+            // Добавляем обработчики сортировки
+            sortHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const field = header.getAttribute('data-sort');
+                    
+                    // Если уже сортируем по этому полю, меняем направление
+                    if (currentSort.field === field) {
+                        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        // Иначе сортируем по новому полю
+                        currentSort.field = field;
+                        currentSort.direction = 'asc';
+                    }
+                    
+                    // Сохраняем в localStorage
+                    saveFilters();
+                    
+                    // Применяем сортировку и рендерим
+                    applyFilters();
+                });
+            });
+            
+            // Загрузка данных
+            async function loadData() {
+                try {
+                    const response = await fetch('api/partners.php');
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        partners = data.data;
+                        applyFilters();
+                    } else {
+                        alert('Ошибка загрузки: ' + (data.message || 'Неизвестная ошибка'));
+                    }
+                } catch (error) {
+                    alert('Ошибка сети: ' + error.message);
+                } finally {
+                    loadingEl.style.display = 'none';
+                    tableEl.style.display = 'table';
+                }
+            }
+            
+            // Применение фильтров и сортировки
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const statusValue = statusFilter.value;
+                
+                // Сохраняем фильтры
+                saveFilters();
+                
+                // Фильтрация
+                let filtered = partners.filter(partner => {
+                    // Поиск по нескольким полям
+                    const matchesSearch = 
+                        partner.name.toLowerCase().includes(searchTerm) ||
+                        partner.email.toLowerCase().includes(searchTerm) ||
+                        partner.phone.toLowerCase().includes(searchTerm);
+                    
+                    // Фильтрация по статусу
+                    const matchesStatus = 
+                        statusValue === 'all' ||
+                        (statusValue === 'active' && !partner.is_archived) ||
+                        (statusValue === 'archived' && partner.is_archived);
+                    
+                    return matchesSearch && matchesStatus;
+                });
+                
+                // Сортировка
+                filtered.sort((a, b) => {
+                    const field = currentSort.field;
+                    const direction = currentSort.direction === 'asc' ? 1 : -1;
+                    
+                    // Для разных типов полей разная логика сравнения
+                    if (field === 'is_archived') {
+                        return (a.is_archived - b.is_archived) * direction;
+                    } else {
+                        return a[field].localeCompare(b[field]) * direction;
+                    }
+                });
+                
+                // Обновление UI сортировки
+                updateSortUI();
+                
+                // Рендеринг
+                renderPartners(filtered);
+            }
+            
+            // Рендеринг таблицы
+            function renderPartners(partnersToRender) {
+                tableBody.innerHTML = '';
+                
+                if (partnersToRender.length === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="5" style="text-align: center;">Нет данных для отображения</td>';
+                    tableBody.appendChild(row);
+                    return;
+                }
+                
+                partnersToRender.forEach(partner => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${escapeHtml(partner.name)}</td>
+                        <td>${escapeHtml(partner.email)}</td>
+                        <td>${escapeHtml(partner.phone)}</td>
+                        <td>${escapeHtml(partner.dog_num)}</td>
+                        <td>
+                            <span class="status ${partner.is_archived ? 'archived' : 'active'}">
+                                ${partner.is_archived ? 'Архив' : 'Активен'}
+                            </span>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+            
+            // Сброс фильтров
+            function resetFilters() {
+                searchInput.value = '';
+                statusFilter.value = 'all';
+                currentSort = { field: 'name', direction: 'asc' };
+                applyFilters();
+            }
+            
+            // Сохранение фильтров в localStorage
+            function saveFilters() {
+                localStorage.setItem('partnerFilters', JSON.stringify({
+                    search: searchInput.value,
+                    status: statusFilter.value,
+                    sortField: currentSort.field,
+                    sortDirection: currentSort.direction
+                }));
+            }
+            
+            // Загрузка фильтров из localStorage
+            function loadFilters() {
+                const saved = localStorage.getItem('partnerFilters');
+                if

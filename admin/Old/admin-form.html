@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ООО АРМ - Личный кабинет партнера</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container wide-layout">
+        <!-- Шапка -->
+        <header class="admin-header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <svg viewBox="0 0 24 24" class="logo-icon">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span class="company-name">ООО АРМ</span>
+                </div>
+                <div class="header-user">
+                    <span class="user-name">Администратор</span>
+                    <div class="user-avatar">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основное содержимое -->
+        <div class="main-content">
+            <!-- Период -->
+            <div class="period-selector">
+                <div class="period-controls">
+                    <div class="period-input-group">
+                        <label for="periodStart">Начало периода:</label>
+                        <input type="date" id="periodStart" class="period-input">
+                    </div>
+                    <div class="period-input-group">
+                        <label for="periodEnd">Конец периода:</label>
+                        <input type="date" id="periodEnd" class="period-input">
+                    </div>
+                    <button id="setMonthPeriod" class="period-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Текущий месяц
+                    </button>
+                    <button id="savePeriod" class="period-btn primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Сохранить
+                    </button>
+                </div>
+            </div>
+
+            <!-- Дашборд -->
+            <div class="dashboard">
+                <div class="dashboard-grid">
+                    <!-- Карточка администратора -->
+                    <a href="./profile.php" class="dashboard-card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3>Карточка администратора</h3>
+                            <p>Управление профилем администратора</p>
+                        </div>
+                    </a>
+
+                    <!-- Партнеры -->
+                    <a href="./partners.php" class="dashboard-card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3>Партнеры</h3>
+                            <p>Список партнеров</p>
+                        </div>
+                    </a>
+
+                    <!-- Организации -->
+                    <a href="./organizations.php" class="dashboard-card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3>Организации</h3>
+                            <p>Список организаций</p>
+                        </div>
+                    </a>
+
+                    <!-- Запросы -->
+                    <a href="#" class="dashboard-card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3>Запросы</h3>
+                            <p>Мониторинг текущих обращений</p>
+                        </div>
+                    </a>
+
+                    <!-- Акты -->
+                    <a href="./acts.php" class="dashboard-card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3>Акты</h3>
+                            <p>Перечень актов партнеров</p>
+                        </div>
+                    </a>
+
+                    <!-- Уведомления -->
+                    <a href="#" class="dashboard-card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3>Уведомления</h3>
+                            <p>Системные оповещения</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал -->
+        <footer class="admin-footer">
+            <div class="footer-content">
+                <p>© 2025 Личный кабинет партнера. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка сохраненного периода из localStorage
+            const loadPeriod = () => {
+                const periodStart = localStorage.getItem('periodStart');
+                const periodEnd = localStorage.getItem('periodEnd');
+                
+                if (periodStart) document.getElementById('periodStart').value = periodStart;
+                if (periodEnd) document.getElementById('periodEnd').value = periodEnd;
+            };
+
+            loadPeriod();
+
+            // Установка текущего месяца
+            document.getElementById('setMonthPeriod').addEventListener('click', function() {
+                const now = new Date();
+                const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+                const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+                
+                document.getElementById('periodStart').valueAsDate = firstDay;
+                document.getElementById('periodEnd').valueAsDate = lastDay;
+            });
+
+            // Сохранение периода
+            document.getElementById('savePeriod').addEventListener('click', function() {
+                const start = document.getElementById('periodStart').value;
+                const end = document.getElementById('periodEnd').value;
+                
+                if (start && end) {
+                    localStorage.setItem('periodStart', start);
+                    localStorage.setItem('periodEnd', end);
+                    
+                    // Отправка на сервер для сохранения в сессии
+                    fetch('save_period.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `periodStart=${encodeURIComponent(start)}&periodEnd=${encodeURIComponent(end)}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showNotification('Период успешно сохранен', 'success');
+                        } else {
+                            showNotification('Ошибка сохранения периода', 'error');
+                        }
+                    });
+                } else {
+                    showNotification('Пожалуйста, выберите начало и конец периода', 'warning');
+                }
+            });
+
+            // Функция показа уведомлений
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('fade-out');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

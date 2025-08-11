@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кабинет партнера</title>
+    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="jquery-3.7.1.js"></script>
+</head>
+
+<script>
+    console.log(window.login);
+    if (window.jQuery) {
+        var vJq = jQuery.fn.jquery;
+        console.log(vJq);
+        console.log("Действия для подключённого jQuery");
+    }
+    else {
+        console.log("Действия для неподключённого jQuery");
+    }
+    // Загрузка файла пользователей 
+    console.log("Попытка загрузить json ");
+    fetch("./users.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ой, ошибка в fetch: ' + response.statusText);
+            }
+            console.log("Попытка загрузить увечалась успехом!");
+            return response.json();
+        })
+        .then(jsonData => console.log(jsonData))
+        .catch(error => console.error('Ошибка при исполнении запроса: ', error));
+</script>
+
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo" href="#">
+                <img src=".\ЛоготипАРМ.jpg" width="100" height="100" alt="Логотип АРМ">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> Контакты</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <section class="hero">
+            <h1>Добро пожаловать в административную часть Личного кабинета партнера!</h1>
+        </section>
+
+        <section class="features">
+            <button class="feature-button" onclick="window.location.href='./cardPartner.html';">
+                <i class="fas fa-user-cog"></i>
+                <h3>Карточка администратора</h3>
+                <p>Управление профилем администратора</p>
+            </button>
+            <button class="feature-button" onclick="window.location.href='./listPartners.html';">
+                <i class="fas fa-handshake"></i>
+                <h3>Партнеры</h3>
+                <p>Список партнеров</p>
+            </button>
+            <button class="feature-button">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>Начисления</h3>
+                <p>История финансовых операций</p>
+            </button>
+            <button class="feature-button">
+                <i class="fas fa-question-circle"></i>
+                <h3>Запросы</h3>
+                <p>Мониторинг текущих обращений</p>
+            </button>
+            <button class="feature-button" onclick="window.location.href='./listActs.html';">
+                <i class="fas fa-file-contract"></i>
+                <h3>Акты</h3>
+                <p>Договоры и документация</p>
+            </button>
+            <button class="feature-button">
+                <i class="fas fa-bell"></i>
+                <h3>Уведомления от партнеров</h3>
+                <p>Системные оповещения</p>
+            </button>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <p>&copy; 2025 Личный кабинет партнера. Все права защищены.</p>
+    </footer>
+</body>
+</html>

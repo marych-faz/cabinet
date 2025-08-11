@@ -1,0 +1,57 @@
+/partner_account
+│
+├── /assets
+│   ├── /css
+│   │   ├── main.css
+│   │   ├── admin.css
+│   │   └── partner.css
+│   ├── /js
+│   │   ├── main.js
+│   │   ├── admin.js
+│   │   └── partner.js
+│   ├── /images
+│   │   ├── logo.png
+│   │   ├── favicon.ico
+│   │   └── /avatars
+│   │       ├── default.png
+│   │       └── ...
+│   └── /fonts
+│       └── ...
+│
+├── /includes
+│   ├── connect_db.php
+│   ├── class_db.php
+│   ├── header.php
+│   ├── footer.php
+│   ├── auth_functions.php
+│   └── config.php
+│
+├── /admin
+│   ├── index.php          # Главная страница администратора
+│   ├── profile.php        # Карточка администратора
+│   ├── partners.php       # Список партнеров
+│   ├── organizations.php  # Список организаций
+│   ├── acts.php           # Список актов
+│   └── /modals
+│       ├── edit_partner.php
+│       ├── edit_organization.php
+│       └── edit_act.php
+│
+├── /partner
+│   ├── index.php          # Главная страница партнера
+│   ├── profile.php        # Профиль партнера
+│   ├── organizations.php  # Организации партнера
+│   ├── acts.php           # Акты партнера
+│   └── /modals
+│       ├── edit_profile.php
+│       ├── edit_organization.php
+│       └── add_act.php
+│
+├── /auth
+│   ├── login.php
+│   ├── register.php
+│   ├── logout.php
+│   └── recovery.php
+│
+├── index.php              # Главная страница (редирект на auth/login)
+└── .htaccess

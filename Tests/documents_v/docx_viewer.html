@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DOCX Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        #preview {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background: white;
+            min-height: 200px;
+            max-width: 800px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #aaa;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Загрузите DOCX файл</h1>
+<input type="file" id="fileInput" accept=".docx" />
+<div id="preview">Содержимое будет показано здесь.</div>
+
+<!-- Подключение mammoth.js -->
+<script src="mammoth.browser.min.js"></script> 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInput = document.getElementById("fileInput");
+        const preview = document.getElementById("preview");
+
+        fileInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (!file || !file.name.endsWith(".docx")) {
+                alert("Пожалуйста, выберите файл формата .docx");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const arrayBuffer = reader.result;
+
+                mammoth.convertToHtml({arrayBuffer: arrayBuffer})
+                    .then(function (result) {
+                        preview.innerHTML = result.value;
+                    })
+                    .catch(function (error) {
+                        console.error("Ошибка:", error);
+                        preview.innerHTML = "<p style='color:red;'>Не удалось обработать файл.</p>";
+                    });
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+    });
+</script>
+</body>
+</html>

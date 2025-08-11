@@ -1,0 +1,418 @@
+/* Основные стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Обертка профиля */
+.profile-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+/* Шапка профиля */
+.profile-header {
+    background: #4361ee;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.profile-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.profile-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Тело профиля */
+.profile-body {
+    padding: 15px 20px;
+}
+
+/* Форма */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Секции формы */
+.form-section {
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    color: #4361ee;
+    font-weight: 500;
+    margin: 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.section-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Строки формы */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+/* Группы формы */
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #2b2d42;
+    font-weight: 500;
+}
+
+/* Элементы управления */
+.form-control {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    background: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4361ee;
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+}
+
+.readonly-field {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+textarea.form-control {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Сообщения статуса */
+.status-message {
+    padding: 8px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+}
+
+.status-error {
+    background: #fee2e2;
+    color: #ef233c;
+}
+
+.status-success {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+/* Кнопки */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #4361ee;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3a56d4;
+}
+
+.btn-secondary {
+    background: #adb5bd;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn svg {
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+}
+
+/* Таблица детализации */
+.details-table-container {
+    overflow-x: auto;
+    margin-top: 5px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 1000px;
+}
+
+.details-table th {
+    background: #f1f5f9;
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.details-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.details-table .empty-row td {
+    text-align: center;
+    color: #6c757d;
+    padding: 15px;
+}
+
+/* Строки зебры */
+.even-row {
+    background-color: #ffffff;
+}
+
+.odd-row {
+    background-color: #f8f9fa;
+}
+
+/* Выравнивание текста */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Итоговые суммы */
+.total-label {
+    font-weight: 600;
+    text-align: right;
+    padding-right: 10px;
+    background: #f8f9fa;
+    position: sticky;
+    bottom: 0;
+}
+
+.total-amount {
+    font-weight: 600;
+    padding-right: 10px;
+    background: #f8f9fa;
+    position: sticky;
+    bottom: 0;
+}
+
+/* Кнопки действий */
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.action-btn:hover {
+    background: #f1f5f9;
+}
+
+.action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.action-btn.delete-detail-btn {
+    color: #ef233c;
+}
+
+.action-btn.delete-detail-btn:hover {
+    background: #fee2e2;
+}
+
+.action-btn.edit-detail-btn {
+    color: #4361ee;
+}
+
+.action-btn.edit-detail-btn:hover {
+    background: #e0e7ff;
+}
+
+/* Действия формы */
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h2 {
+    font-size: 1.2rem;
+    color: #2b2d42;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 5px;
+}
+
+.modal-close:hover {
+    color: #2b2d42;
+}
+
+/* Обязательные поля */
+select:required:invalid {
+    color: #6c757d;
+}
+select:required:invalid option[value=""] {
+    color: #6c757d;
+}
+select:required:invalid option:not([value=""]) {
+    color: #2b2d42;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-wrapper {
+        margin: 5px;
+        border-radius: 6px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .section-title-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    #addDetailBtn {
+        width: 100%;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .profile-header {
+        padding: 12px 15px;
+    }
+    
+    .profile-body {
+        padding: 12px 15px;
+    }
+    
+    .form-control {
+        padding: 7px 9px;
+    }
+}

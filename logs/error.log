@@ -1,0 +1,21 @@
+[10-Aug-2025 03:10:50 Etc/GMT-5] AJAX Error: Акт не определен
+[10-Aug-2025 04:17:32 Etc/GMT-5] PHP Warning:  Undefined variable $params in C:\OSPanel\home\cabinet.local\admin\acts.php on line 25
+[2025-08-10 04:17:32] Ошибка: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '...' at line 1[10-Aug-2025 04:24:39 Etc/GMT-5] PHP Fatal error:  Uncaught UnhandledMatchError: Unhandled match case 4 in C:\OSPanel\home\cabinet.local\admin\acts.php:153
+Stack trace:
+#0 {main}
+  thrown in C:\OSPanel\home\cabinet.local\admin\acts.php on line 153
+[10-Aug-2025 15:02:10 Etc/GMT-5] PHP Fatal error:  Uncaught PDOException: There is no active transaction in C:\OSPanel\home\cabinet.local\admin\act-edit.php:98
+Stack trace:
+#0 C:\OSPanel\home\cabinet.local\admin\act-edit.php(98): PDO->rollBack()
+#1 {main}
+  thrown in C:\OSPanel\home\cabinet.local\admin\act-edit.php on line 98
+[10-Aug-2025 15:02:31 Etc/GMT-5] PHP Fatal error:  Uncaught PDOException: There is no active transaction in C:\OSPanel\home\cabinet.local\admin\act-edit.php:98
+Stack trace:
+#0 C:\OSPanel\home\cabinet.local\admin\act-edit.php(98): PDO->rollBack()
+#1 {main}
+  thrown in C:\OSPanel\home\cabinet.local\admin\act-edit.php on line 98
+[10-Aug-2025 15:05:30 Etc/GMT-5] PHP Fatal error:  Uncaught PDOException: There is no active transaction in C:\OSPanel\home\cabinet.local\admin\act-edit.php:98
+Stack trace:
+#0 C:\OSPanel\home\cabinet.local\admin\act-edit.php(98): PDO->rollBack()
+#1 {main}
+  thrown in C:\OSPanel\home\cabinet.local\admin\act-edit.php on line 98

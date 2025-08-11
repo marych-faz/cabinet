@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Пример CAPTCHA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        .captcha-container {
+            margin-top: 20px;
+        }
+        #captcha-img {
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Форма с CAPTCHA</h2>
+
+<form action="verify.php" method="POST">
+    <label>Имя:
+        <input type="text" name="name" required>
+    </label><br><br>
+
+    <div class="captcha-container">
+        <label>Введите код с картинки:
+            <input type="text" name="captcha" maxlength="6" required>
+        </label><br><br>
+        <img id="captcha-img" src="captcha.php" alt="CAPTCHA" title="Обновить код">
+    </div>
+
+    <br>
+    <button type="submit">Отправить</button>
+</form>
+
+<script>
+    // Обновление CAPTCHA по клику
+    document.getElementById('captcha-img').addEventListener('click', function () {
+        this.src = 'captcha.php?' + Date.now(); // добавляем timestamp чтобы браузер не кэшировал
+    });
+</script>
+
+</body>
+</html>
