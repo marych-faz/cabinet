@@ -91,9 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_action'])) {
                 
                 if ($detailId) {
                     // Обновление существующей записи
-                    $stmt = $pdo->prepare("UPDATE act_detail SET 
-                        org_id = ?, num = ?, registry_number = ?, date = ?, 
-                        placement_amount = ?, operator_payment = ?, 
+                    $stmt = $pdo->prepare("UPDATE act_detail SET
+                        org_id = ?, num = ?, registry_number = ?, date = ?,
+                        placement_amount = ?, operator_payment = ?,
                         commission_percentage = ?, commission_amount = ?
                         WHERE id = ? AND act_id = ?");
                     $stmt->execute([
@@ -104,10 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_action'])) {
                     ]);
                 } else {
                     // Создание новой записи                    
-                    $stmt = $pdo->prepare("INSERT INTO act_detail 
-                        (act_id, org_id, num, registry_number, date, 
-                        placement_amount, operator_payment, 
-                        commission_percentage, commission_amount) 
+                    $stmt = $pdo->prepare("INSERT INTO act_detail
+                        (act_id, org_id, num, registry_number, date,
+                        placement_amount, operator_payment,
+                        commission_percentage, commission_amount)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     $stmt->execute([
                         $ajaxActId, $orgId, $_POST['num'], $_POST['registry_number'], $_POST['date'],
