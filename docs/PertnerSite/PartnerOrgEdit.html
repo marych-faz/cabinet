@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подчиненные организации</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .required:after {
+            content: " *";
+            color: red;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .submit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .cancel {
+            background-color: #f44336;
+            color: white;
+        }
+        .exit {
+            background-color: #2196F3;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Подчиненные организации</h1>
+        <form id="organizationForm">
+            <div class="form-group">
+                <label for="orgName" class="required">Наименование организации:</label>
+                <input type="text" id="orgName" name="orgName" required>
+            </div>
+            <div class="form-group">
+                <label for="inn" class="required">ИНН:</label>
+                <input type="text" id="inn" name="inn" required pattern="\d{10,12}" title="ИНН должен содержать 10 или 12 цифр">
+            </div>
+            <div class="form-group">
+                <label for="kpp">КПП:</label>
+                <input type="text" id="kpp" name="kpp" pattern="\d{9}" title="КПП должен содержать 9 цифр (если указан)">
+            </div>
+            <div class="buttons">
+                <button type="submit" class="submit">Отправить на модерацию</button>
+                <button type="reset" class="cancel">Отменить</button>
+                <button type="button" class="exit" onclick="window.close()">Выход</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('organizationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Получаем значения полей
+            const orgName = document.getElementById('orgName').value;
+            const inn = document.getElementById('inn').value;
+            const kpp = document.getElementById('kpp').value;
+            
+            // Здесь можно добавить код для отправки данных на сервер
+            console.log('Отправка данных:', { orgName, inn, kpp });
+            
+            alert('Данные отправлены на модерацию!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

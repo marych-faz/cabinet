@@ -1,0 +1,802 @@
+[
+    {
+        "id": 1,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "01.01.2025",
+        "summa": 10000,
+        "status": 0
+    },
+    {
+        "id": 2,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "02.01.2025",
+        "summa": 25000,
+        "status": 1
+    },
+    {
+        "id": 3,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "03.01.2025",
+        "summa": 50000,
+        "status": 2
+    },
+    {
+        "id": 4,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "04.01.2025",
+        "summa": 75000,
+        "status": 3
+    },
+    {
+        "id": 5,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "05.01.2025",
+        "summa": 100000,
+        "status": 4
+    },
+    {
+        "id": 6,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "06.01.2025",
+        "summa": 85000,
+        "status": 0
+    },
+    {
+        "id": 7,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "07.01.2025",
+        "summa": 60000,
+        "status": 1
+    },
+    {
+        "id": 8,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "08.01.2025",
+        "summa": 120000,
+        "status": 2
+    },
+    {
+        "id": 9,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "09.01.2025",
+        "summa": 90000,
+        "status": 3
+    },
+    {
+        "id": 10,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "10.01.2025",
+        "summa": 150000,
+        "status": 4
+    },
+    {
+        "id": 11,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "11.01.2025",
+        "summa": 110000,
+        "status": 0
+    },
+    {
+        "id": 12,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "12.01.2025",
+        "summa": 130000,
+        "status": 1
+    },
+    {
+        "id": 13,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "13.01.2025",
+        "summa": 140000,
+        "status": 2
+    },
+    {
+        "id": 14,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "14.01.2025",
+        "summa": 160000,
+        "status": 3
+    },
+    {
+        "id": 15,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "15.01.2025",
+        "summa": 170000,
+        "status": 4
+    },
+    {
+        "id": 16,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "16.01.2025",
+        "summa": 180000,
+        "status": 0
+    },
+    {
+        "id": 17,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "17.01.2025",
+        "summa": 190000,
+        "status": 1
+    },
+    {
+        "id": 18,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "18.01.2025",
+        "summa": 200000,
+        "status": 2
+    },
+    {
+        "id": 19,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "19.01.2025",
+        "summa": 210000,
+        "status": 3
+    },
+    {
+        "id": 20,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "20.01.2025",
+        "summa": 220000,
+        "status": 4
+    },
+    {
+        "id": 21,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "21.01.2025",
+        "summa": 230000,
+        "status": 0
+    },
+    {
+        "id": 22,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "22.01.2025",
+        "summa": 240000,
+        "status": 1
+    },
+    {
+        "id": 23,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "23.01.2025",
+        "summa": 250000,
+        "status": 2
+    },
+    {
+        "id": 24,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "24.01.2025",
+        "summa": 260000,
+        "status": 3
+    },
+    {
+        "id": 25,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "25.01.2025",
+        "summa": 270000,
+        "status": 4
+    },
+    {
+        "id": 26,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "26.01.2025",
+        "summa": 280000,
+        "status": 0
+    },
+    {
+        "id": 27,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "27.01.2025",
+        "summa": 290000,
+        "status": 1
+    },
+    {
+        "id": 28,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "28.01.2025",
+        "summa": 300000,
+        "status": 2
+    },
+    {
+        "id": 29,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "29.01.2025",
+        "summa": 310000,
+        "status": 3
+    },
+    {
+        "id": 30,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "30.01.2025",
+        "summa": 320000,
+        "status": 4
+    },
+    {
+        "id": 31,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "31.01.2025",
+        "summa": 330000,
+        "status": 0
+    },
+    {
+        "id": 32,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "01.02.2025",
+        "summa": 340000,
+        "status": 1
+    },
+    {
+        "id": 33,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "02.02.2025",
+        "summa": 350000,
+        "status": 2
+    },
+    {
+        "id": 34,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "03.02.2025",
+        "summa": 360000,
+        "status": 3
+    },
+    {
+        "id": 35,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "04.02.2025",
+        "summa": 370000,
+        "status": 4
+    },
+    {
+        "id": 36,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "05.02.2025",
+        "summa": 380000,
+        "status": 0
+    },
+    {
+        "id": 37,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "06.02.2025",
+        "summa": 390000,
+        "status": 1
+    },
+    {
+        "id": 38,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "07.02.2025",
+        "summa": 400000,
+        "status": 2
+    },
+    {
+        "id": 39,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "08.02.2025",
+        "summa": 390000,
+        "status": 3
+    },
+    {
+        "id": 40,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "09.02.2025",
+        "summa": 380000,
+        "status": 4
+    },
+    {
+        "id": 41,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "10.02.2025",
+        "summa": 370000,
+        "status": 0
+    },
+    {
+        "id": 42,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "11.02.2025",
+        "summa": 360000,
+        "status": 1
+    },
+    {
+        "id": 43,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "12.02.2025",
+        "summa": 350000,
+        "status": 2
+    },
+    {
+        "id": 44,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "13.02.2025",
+        "summa": 340000,
+        "status": 3
+    },
+    {
+        "id": 45,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "14.02.2025",
+        "summa": 330000,
+        "status": 4
+    },
+    {
+        "id": 46,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "15.02.2025",
+        "summa": 320000,
+        "status": 0
+    },
+    {
+        "id": 47,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "16.02.2025",
+        "summa": 310000,
+        "status": 1
+    },
+    {
+        "id": 48,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "17.02.2025",
+        "summa": 300000,
+        "status": 2
+    },
+    {
+        "id": 49,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "18.02.2025",
+        "summa": 290000,
+        "status": 3
+    },
+    {
+        "id": 50,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "19.02.2025",
+        "summa": 280000,
+        "status": 4
+    },
+    {
+        "id": 51,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "20.02.2025",
+        "summa": 270000,
+        "status": 0
+    },
+    {
+        "id": 52,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "21.02.2025",
+        "summa": 260000,
+        "status": 1
+    },
+    {
+        "id": 53,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "22.02.2025",
+        "summa": 250000,
+        "status": 2
+    },
+    {
+        "id": 54,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "23.02.2025",
+        "summa": 240000,
+        "status": 3
+    },
+    {
+        "id": 55,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "24.02.2025",
+        "summa": 230000,
+        "status": 4
+    },
+    {
+        "id": 56,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "25.02.2025",
+        "summa": 220000,
+        "status": 0
+    },
+    {
+        "id": 57,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "26.02.2025",
+        "summa": 210000,
+        "status": 1
+    },
+    {
+        "id": 58,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "27.02.2025",
+        "summa": 200000,
+        "status": 2
+    },
+    {
+        "id": 59,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "28.02.2025",
+        "summa": 190000,
+        "status": 3
+    },
+    {
+        "id": 60,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "01.03.2025",
+        "summa": 180000,
+        "status": 4
+    },
+    {
+        "id": 61,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "02.03.2025",
+        "summa": 170000,
+        "status": 0
+    },
+    {
+        "id": 62,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "03.03.2025",
+        "summa": 160000,
+        "status": 1
+    },
+    {
+        "id": 63,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "04.03.2025",
+        "summa": 150000,
+        "status": 2
+    },
+    {
+        "id": 64,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "05.03.2025",
+        "summa": 140000,
+        "status": 3
+    },
+    {
+        "id": 65,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "06.03.2025",
+        "summa": 130000,
+        "status": 4
+    },
+    {
+        "id": 66,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "07.03.2025",
+        "summa": 120000,
+        "status": 0
+    },
+    {
+        "id": 67,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "08.03.2025",
+        "summa": 110000,
+        "status": 1
+    },
+    {
+        "id": 68,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "09.03.2025",
+        "summa": 100000,
+        "status": 2
+    },
+    {
+        "id": 69,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "10.03.2025",
+        "summa": 90000,
+        "status": 3
+    },
+    {
+        "id": 70,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "11.03.2025",
+        "summa": 80000,
+        "status": 4
+    },
+    {
+        "id": 71,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "12.03.2025",
+        "summa": 70000,
+        "status": 0
+    },
+    {
+        "id": 72,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "13.03.2025",
+        "summa": 60000,
+        "status": 1
+    },
+    {
+        "id": 73,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "14.03.2025",
+        "summa": 50000,
+        "status": 2
+    },
+    {
+        "id": 74,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "15.03.2025",
+        "summa": 40000,
+        "status": 3
+    },
+    {
+        "id": 75,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "16.03.2025",
+        "summa": 30000,
+        "status": 4
+    },
+    {
+        "id": 76,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "17.03.2025",
+        "summa": 20000,
+        "status": 0
+    },
+    {
+        "id": 77,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "18.03.2025",
+        "summa": 10000,
+        "status": 1
+    },
+    {
+        "id": 78,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "19.03.2025",
+        "summa": 15000,
+        "status": 2
+    },
+    {
+        "id": 79,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "20.03.2025",
+        "summa": 25000,
+        "status": 3
+    },
+    {
+        "id": 80,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "21.03.2025",
+        "summa": 35000,
+        "status": 4
+    },
+    {
+        "id": 81,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "22.03.2025",
+        "summa": 45000,
+        "status": 0
+    },
+    {
+        "id": 82,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "23.03.2025",
+        "summa": 55000,
+        "status": 1
+    },
+    {
+        "id": 83,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "24.03.2025",
+        "summa": 65000,
+        "status": 2
+    },
+    {
+        "id": 84,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "25.03.2025",
+        "summa": 75000,
+        "status": 3
+    },
+    {
+        "id": 85,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "26.03.2025",
+        "summa": 85000,
+        "status": 4
+    },
+    {
+        "id": 86,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "27.03.2025",
+        "summa": 95000,
+        "status": 0
+    },
+    {
+        "id": 87,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "28.03.2025",
+        "summa": 105000,
+        "status": 1
+    },
+    {
+        "id": 88,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "29.03.2025",
+        "summa": 115000,
+        "status": 2
+    },
+    {
+        "id": 89,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "30.03.2025",
+        "summa": 125000,
+        "status": 3
+    },
+    {
+        "id": 90,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "31.03.2025",
+        "summa": 135000,
+        "status": 4
+    },
+    {
+        "id": 91,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "01.04.2025",
+        "summa": 145000,
+        "status": 0
+    },
+    {
+        "id": 92,
+        "partner_id": 3,
+        "partner_name": "Иванов Иван Сергеевич",
+        "date": "02.04.2025",
+        "summa": 155000,
+        "status": 1
+    },
+    {
+        "id": 93,
+        "partner_id": 4,
+        "partner_name": "Петрова Мария Владимировна",
+        "date": "03.04.2025",
+        "summa": 165000,
+        "status": 2
+    },
+    {
+        "id": 94,
+        "partner_id": 5,
+        "partner_name": "Сидоров Алексей Петрович",
+        "date": "04.04.2025",
+        "summa": 175000,
+        "status": 3
+    },
+    {
+        "id": 95,
+        "partner_id": 6,
+        "partner_name": "Кузнецова Елена Дмитриевна",
+        "date": "05.04.2025",
+        "summa": 185000,
+        "status": 4
+    },
+    {
+        "id": 96,
+        "partner_id": 7,
+        "partner_name": "Федоров Дмитрий Николаевич",
+        "date": "06.04.2025",
+        "summa": 195000,
+        "status": 0
+    },
+    {
+        "id": 97,
+        "partner_id": 8,
+        "partner_name": "Смирнова Ольга Васильевна",
+        "date": "07.04.2025",
+        "summa": 205000,
+        "status": 1
+    },
+    {
+        "id": 98,
+        "partner_id": 9,
+        "partner_name": "Николаев Артем Игоревич",
+        "date": "08.04.2025",
+        "summa": 215000,
+        "status": 2
+    },
+    {
+        "id": 99,
+        "partner_id": 10,
+        "partner_name": "Волкова Анна Михайловна",
+        "date": "09.04.2025",
+        "summa": 225000,
+        "status": 3
+    },
+    {
+        "id": 100,
+        "partner_id": 2,
+        "partner_name": "Большаков Давид Тихонович",
+        "date": "10.04.2025",
+        "summa": 235000,
+        "status": 4
+    }
+]

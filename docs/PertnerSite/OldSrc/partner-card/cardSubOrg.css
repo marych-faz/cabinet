@@ -1,0 +1,27 @@
+/* Общий стиль страницы */
+body {
+  padding-top: 60px;
+  background-color: #f8f9fa;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+footer {
+  margin-top: 40px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 576px) {
+  .col-sm-3,
+  .col-sm-4,
+  .col-sm-9 {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .d-md-flex {
+    display: block !important;
+  }
+}

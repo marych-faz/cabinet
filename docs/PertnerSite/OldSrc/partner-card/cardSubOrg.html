@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Карточка партнера</title>
+  <!-- Bootstrap -->
+  <link href=".\bootstrap-5.3.3-dist\css\bootstrap.min.css" rel="stylesheet">
+  <!-- Подключение внешних файлов -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Шапка и меню -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Партнеры</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">О программе</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Контакты</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Основная часть -->
+<div class="container mt-5">
+  <h2 class="mb-4">Карточка партнера</h2>
+  <form>
+    <!-- ФИО -->
+    <div class="mb-3 row">
+      <label for="edtFIO" class="col-sm-3 col-form-label">Фамилия Имя Отчество:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="edtFIO" placeholder="Введите ФИО">
+      </div>
+    </div>
+
+    <!-- Номер договора -->
+    <div class="mb-3 row">
+      <label for="edtNumContract" class="col-sm-3 col-form-label">Номер партнерского договора:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="edtNumContract" placeholder="Например: 123/456">
+      </div>
+    </div>
+
+    <!-- Даты начала и окончания договора -->
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label">Дата договора:</label>
+      <div class="col-sm-4">
+        <input type="date" class="form-control" id="edtBegContract">
+      </div>
+      <div class="col-sm-4">
+        <input type="date" class="form-control" id="edtEndContract">
+      </div>
+    </div>
+
+    <!-- Телефон -->
+    <div class="mb-3 row">
+      <label for="edtPhone" class="col-sm-3 col-form-label">Телефон:</label>
+      <div class="col-sm-9">
+        <input type="tel" class="form-control" id="edtPhone" placeholder="+7 (___) ___-__-__">
+      </div>
+    </div>
+
+    <!-- Банковские реквизиты -->
+    <h4 class="mt-4 mb-3">Банковские реквизиты</h4>
+
+    <!-- Наименование банка -->
+    <div class="mb-3 row">
+      <label for="edtBankName" class="col-sm-3 col-form-label">Наименование банка:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="edtBankName" placeholder="Введите название банка">
+      </div>
+    </div>
+
+    <!-- БИК -->
+    <div class="mb-3 row">
+      <label for="edtBankBIK" class="col-sm-3 col-form-label">БИК:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="edtBankBIK" placeholder="Например: 044525225">
+      </div>
+    </div>
+
+    <!-- Р/С -->
+    <div class="mb-3 row">
+      <label for="edtBankRS" class="col-sm-3 col-form-label">Расчетный счет (Р/С):</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="edtBankRS" placeholder="Например: 40802810900000000000">
+      </div>
+    </div>
+
+    <!-- К/С -->
+    <div class="mb-3 row">
+      <label for="edtBankKS" class="col-sm-3 col-form-label">Корреспондентский счет (К/С):</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="edtBankKS" placeholder="Например: 30101810400000000225">
+      </div>
+    </div>
+
+    <!-- Кнопки -->
+    <div class="row mt-4">
+      <div class="col-sm-9 offset-sm-3 d-grid gap-2 d-md-flex justify-content-md-start">
+        <button type="submit" class="btn btn-success btn-lg" id="btnSave">Сохранить</button>
+        <button type="reset" class="btn btn-secondary btn-lg" id="btnCancel">Отменить</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Подвал -->
+<footer class="container text-center text-muted mt-5">
+  &copy; 2025 Карточка партнера. Все права защищены.
+</footer>
+
+<!-- Bootstrap JS -->
+<script src=".\bootstrap-5.3.3-dist\js\bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

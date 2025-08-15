@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список партнеров</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --hover-color: #3a56d4;
+            --danger-color: #ef233c;
+            --archive-color: #6c757d;
+            --text-color: #2b2d42;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --modal-bg: rgba(0, 0, 0, 0.5);
+            --zebra-even: #f8f9fa;
+            --zebra-odd: #ffffff;
+            --checkbox-size: 16px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            background-color: #f5f7ff;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d90429;
+        }
+        
+        .btn-archive {
+            background-color: var(--archive-color);
+            color: white;
+        }
+        
+        .btn-archive:hover {
+            background-color: #5a6268;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-archived {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            background: white;
+            margin-top: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 800px;
+        }
+        
+        th {
+            position: sticky;
+            top: 0;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        th:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 13px;
+            vertical-align: middle;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--zebra-even);
+        }
+        
+        tr:nth-child(odd) {
+            background-color: var(--zebra-odd);
+        }
+        
+        tr:hover td {
+            background-color: rgba(67, 97, 238, 0.08);
+        }
+        
+        tr.selected td {
+            background-color: rgba(67, 97, 238, 0.15) !important;
+        }
+        
+        .scroll-shadow {
+            position: relative;
+        }
+        
+        .scroll-shadow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+            pointer-events: none;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-bg);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+        }
+        
+        .modal-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #6c757d;
+            padding: 0;
+            line-height: 1;
+        }
+        
+        .modal-body {
+            padding: 12px 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 13px;
+            height: 32px;
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+        }
+        
+        .modal-footer {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        
+        /* Стили для чекбоксов фильтра */
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .filter-checkbox input {
+            width: var(--checkbox-size);
+            height: var(--checkbox-size);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+            }
+            
+            .filter-controls {
+                order: 1;
+                margin-bottom: 10px;
+                justify-content: flex-end;
+                width: 100%;
+            }
+            
+            .action-buttons {
+                width: 100%;
+                justify-content: flex-start;
+                order: -1;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21Z" stroke="#4361ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 7H8V17H16V7Z" stroke="#4361ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 7V4" stroke="#4361ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 20V17" stroke="#4361ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h1>Список партнеров</h1>
+        </div>
+        
+        <div class="controls">
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="newBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4V20M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Новый
+                </button>
+                <button class="btn btn-primary" id="editBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 4H4V11L15.5 22.5L22.5 15.5L11 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17 7L21 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Редактировать
+                </button>
+                <button class="btn btn-archive" id="archiveBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 8H19M10 12H14M5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    В архив
+                </button>
+                <button class="btn btn-danger" id="deleteBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Удалить
+                </button>
+            </div>
+            
+            <div class="filter-controls">
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filterAll" checked> Все
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filterActive" checked> Активные
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filterArchived"> Архив
+                </label>
+            </div>
+        </div>
+        
+        <div class="table-container scroll-shadow">
+            <table id="partnersTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Логин</th>
+                        <th>Email</th>
+                        <th>ФИО</th>
+                        <th>Договор</th>
+                        <th>Период</th>
+                        <th>Телефон</th>
+                        <th>Банк</th>
+                        <th>Реквизиты</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody id="partnersBody">
+                    <!-- Данные будут загружены через JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Редактирование партнера</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editId">
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editLogin" class="form-label">Логин</label>
+                                <input type="text" id="editLogin" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editEmail" class="form-label">Email</label>
+                                <input type="email" id="editEmail" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editName" class="form-label">ФИО</label>
+                        <input type="text" id="editName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editDogNum" class="form-label">Номер договора</label>
+                                <input type="text" id="editDogNum" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editPhone" class="form-label">Телефон</label>
+                                <input type="tel" id="editPhone" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editDogBegDate" class="form-label">Дата начала</label>
+                                <input type="date" id="editDogBegDate" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editDogEndDate" class="form-label">Дата окончания</label>
+                                <input type="date" id="editDogEndDate" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editBankName" class="form-label">Название банка</label>
+                        <input type="text" id="editBankName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editBankBik" class="form-label">БИК</label>
+                                <input type="text" id="editBankBik" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="editBankKs" class="form-label">Корр. счет</label>
+                                <input type="text" id="editBankKs" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editBankRs" class="form-label">Расчетный счет</label>
+                        <input type="text" id="editBankRs" class="form-control" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-archive" id="cancelEdit">Отмена</button>
+                <button type="button" class="btn btn-primary" id="saveEdit">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let partnersData = [];
+        let selectedPartnerId = null;
+        let currentFilters = {
+            all: true,
+            active: true,
+            archived: false
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка данных и восстановление состояния
+            loadData().then(() => {
+                restoreState();
+                renderTable();
+                setupActionButtons();
+                setupModal();
+                setupFilters();
+            });
+        });
+
+        // Сохранение состояния в localStorage
+        function saveState() {
+            const state = {
+                filters: currentFilters,
+                partners: partnersData
+            };
+            localStorage.setItem('partnersAppState', JSON.stringify(state));
+        }
+        
+        // Восстановление состояния из localStorage
+        function restoreState() {
+            const savedState = localStorage.getItem('partnersAppState');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                currentFilters = state.filters || {
+                    all: true,
+                    active: true,
+                    archived: false
+                };
+                partnersData = state.partners || [];
+                
+                // Восстанавливаем состояние чекбоксов
+                updateFilterCheckboxes();
+            }
+        }
+        
+        // Обновление чекбоксов фильтра
+        function updateFilterCheckboxes() {
+            document.getElementById('filterAll').checked = currentFilters.all;
+            document.getElementById('filterActive').checked = currentFilters.active;
+            document.getElementById('filterArchived').checked = currentFilters.archived;
+        }
+        
+        // Настройка фильтров
+        function setupFilters() {
+            document.getElementById('filterAll').addEventListener('change', function() {
+                currentFilters.all = this.checked;
+                if (this.checked) {
+                    currentFilters.active = true;
+                    currentFilters.archived = true;
+                } else {
+                    currentFilters.active = false;
+                    currentFilters.archived = false;
+                }
+                updateFilterCheckboxes();
+                renderTable();
+                saveState();
+            });
+            
+            document.getElementById('filterActive').addEventListener('change', function() {
+                currentFilters.active = this.checked;
+                updateAllFilterState();
+                renderTable();
+                saveState();
+            });
+            
+            document.getElementById('filterArchived').addEventListener('change', function() {
+                currentFilters.archived = this.checked;
+                updateAllFilterState();
+                renderTable();
+                saveState();
+            });
+        }
+        
+        function updateAllFilterState() {
+            currentFilters.all = currentFilters.active && currentFilters.archived;
+            updateFilterCheckboxes();
+        }
+        
+        // Фильтрация данных
+        function getFilteredData() {
+            if (currentFilters.all) {
+                return [...partnersData];
+            }
+            
+            return partnersData.filter(partner => {
+                if (partner.status === 'archived') {
+                    return currentFilters.archived;
+                } else {
+                    return currentFilters.active;
+                }
+            });
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch('users.json');
+                const data = await response.json();
+                // Инициализируем статус для всех партнеров
+                partnersData = data.filter(user => user.is_admin === 0).map(partner => {
+                    return {
+                        ...partner,
+                        status: partner.status || 'active' // По умолчанию 'active'
+                    };
+                });
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                // Заглушка для демонстрации
+                partnersData = [
+                    {
+                        "id": 2, "is_admin": 0, "login": "User", "email": "user@gmail.com",
+                        "name": "Большаков Давид Тихонович", "dog_num": "321/456",
+                        "dog_beg_date": "01.01.2025", "dog_end_date": "31.12.2025",
+                        "phone": "+7(917)532-45-12", "bank_name": "ПАО «АК БАРС» БАНК",
+                        "bank_bik": "049205805", "bank_ks": "30101810000000000805",
+                        "bank_rs": "40702810680060657001",
+                        "status": "active"
+                    },
+                    {
+                        "id": 3, "is_admin": 0, "login": "IvanovI", "email": "ivanov@mail.ru",
+                        "name": "Иванов Иван Сергеевич", "dog_num": "789/123",
+                        "dog_beg_date": "15.03.2025", "dog_end_date": "15.03.2026",
+                        "phone": "+7(987)654-32-10", "bank_name": "ПАО Сбербанк",
+                        "bank_bik": "044525225", "bank_ks": "30101810400000000225",
+                        "bank_rs": "40817810700012345678",
+                        "status": "active"
+                    },
+                    {
+                        "id": 4, "is_admin": 0, "login": "archivedUser", "email": "archived@mail.ru",
+                        "name": "Архивный Пользователь", "dog_num": "111/222",
+                        "dog_beg_date": "01.01.2020", "dog_end_date": "31.12.2020",
+                        "phone": "+7(999)123-45-67", "bank_name": "ПАО ВТБ",
+                        "bank_bik": "044525187", "bank_ks": "30101810700000000187",
+                        "bank_rs": "40702810500000001234",
+                        "status": "archived"
+                    }
+                ];
+            }
+        }
+
+        function renderTable() {
+            const tableBody = document.getElementById('partnersBody');
+            tableBody.innerHTML = '';
+            
+            const filteredData = getFilteredData();
+            
+            for (let i = 0; i < filteredData.length; i++) {
+                const partner = filteredData[i];
+                const row = document.createElement('tr');
+                
+                const statusClass = partner.status === 'archived' ? 'status-archived' : 'status-active';
+                const statusText = partner.status === 'archived' ? 'В архиве' : 'Активен';
+                
+                row.innerHTML = `
+                    <td>${partner.id}</td>
+                    <td>${partner.login}</td>
+                    <td>${partner.email}</td>
+                    <td>${partner.name}</td>
+                    <td>№ ${partner.dog_num}</td>
+                    <td>${formatDate(partner.dog_beg_date)} - ${formatDate(partner.dog_end_date)}</td>
+                    <td>${partner.phone}</td>
+                    <td>${shortBankName(partner.bank_name)}</td>
+                    <td>БИК: ${partner.bank_bik}<br>Р/с: ${partner.bank_rs}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                `;
+                
+                row.addEventListener('click', () => {
+                    document.querySelectorAll('#partnersBody tr').forEach(r => 
+                        r.classList.remove('selected'));
+                    row.classList.add('selected');
+                    selectedPartnerId = partner.id;
+                });
+                
+                tableBody.appendChild(row);
+            }
+            
+            // Автовыбор первой строки
+            if (tableBody.firstChild) {
+                tableBody.firstChild.click();
+            }
+        }
+        
+        function setupActionButtons() {
+            document.getElementById('newBtn').addEventListener('click', () => {
+                selectedPartnerId = null;
+                document.getElementById('modalTitle').textContent = 'Новый партнер';
+                document.getElementById('editForm').reset();
+                document.getElementById('editModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            document.getElementById('editBtn').addEventListener('click', () => {
+                if (!selectedPartnerId) {
+                    alert('Пожалуйста, выберите партнера для редактирования');
+                    return;
+                }
+                openEditModal(selectedPartnerId);
+            });
+            
+            document.getElementById('archiveBtn').addEventListener('click', () => {
+                if (!selectedPartnerId) {
+                    alert('Пожалуйста, выберите партнера для архивации');
+                    return;
+                }
+                archivePartner(selectedPartnerId);
+            });
+            
+            document.getElementById('deleteBtn').addEventListener('click', () => {
+                if (!selectedPartnerId) {
+                    alert('Пожалуйста, выберите партнера для удаления');
+                    return;
+                }
+                deletePartner(selectedPartnerId);
+            });
+        }
+        
+        function setupModal() {
+            const modal = document.getElementById('editModal');
+            const closeBtn = document.querySelector('.modal-close');
+            const cancelBtn = document.getElementById('cancelEdit');
+            
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            document.getElementById('saveEdit').addEventListener('click', savePartnerChanges);
+        }
+
+        function openEditModal(id) {
+            const partner = partnersData.find(p => p.id === id);
+            if (partner) {
+                document.getElementById('modalTitle').textContent = 'Редактирование партнера';
+                document.getElementById('editId').value = partner.id;
+                document.getElementById('editLogin').value = partner.login;
+                document.getElementById('editEmail').value = partner.email;
+                document.getElementById('editName').value = partner.name;
+                document.getElementById('editDogNum').value = partner.dog_num;
+                document.getElementById('editPhone').value = partner.phone;
+                document.getElementById('editDogBegDate').value = parseDateToInput(partner.dog_beg_date);
+                document.getElementById('editDogEndDate').value = parseDateToInput(partner.dog_end_date);
+                document.getElementById('editBankName').value = partner.bank_name;
+                document.getElementById('editBankBik').value = partner.bank_bik;
+                document.getElementById('editBankKs').value = partner.bank_ks;
+                document.getElementById('editBankRs').value = partner.bank_rs;
+                
+                document.getElementById('editModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function savePartnerChanges() {
+            const id = document.getElementById('editId').value;
+            const formData = {
+                login: document.getElementById('editLogin').value,
+                email: document.getElementById('editEmail').value,
+                name: document.getElementById('editName').value,
+                dog_num: document.getElementById('editDogNum').value,
+                phone: document.getElementById('editPhone').value,
+                dog_beg_date: formatDateForSave(document.getElementById('editDogBegDate').value),
+                dog_end_date: formatDateForSave(document.getElementById('editDogEndDate').value),
+                bank_name: document.getElementById('editBankName').value,
+                bank_bik: document.getElementById('editBankBik').value,
+                bank_ks: document.getElementById('editBankKs').value,
+                bank_rs: document.getElementById('editBankRs').value
+            };
+            
+            if (id) {
+                // Обновление существующего партнера
+                const index = partnersData.findIndex(p => p.id == id);
+                if (index !== -1) {
+                    partnersData[index] = { ...partnersData[index], ...formData };
+                }
+            } else {
+                // Создание нового партнера
+                const newId = partnersData.length > 0 ? Math.max(...partnersData.map(p => p.id)) + 1 : 1;
+                partnersData.push({ 
+                    id: newId, 
+                    is_admin: 0,
+                    status: 'active',
+                    ...formData 
+                });
+            }
+            
+            renderTable();
+            closeModal();
+            saveState();
+            alert('Изменения сохранены!');
+        }
+        
+        function archivePartner(id) {
+            if (confirm(`Вы уверены, что хотите отправить партнера с ID: ${id} в архив?`)) {
+                const index = partnersData.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    partnersData[index].status = 'archived';
+                    renderTable();
+                    saveState();
+                    alert('Партнер перемещен в архив!');
+                }
+            }
+        }
+        
+        function deletePartner(id) {
+            if (confirm(`Вы уверены, что хотите удалить партнера с ID: ${id}?`)) {
+                const index = partnersData.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    partnersData.splice(index, 1);
+                    renderTable();
+                    saveState();
+                    alert('Партнер удален!');
+                }
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('editModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Вспомогательные функции
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const [day, month, year] = dateStr.split('.');
+            return `${day}.${month}.${year.slice(2)}`;
+        }
+        
+        function parseDateToInput(dateStr) {
+            if (!dateStr) return '';
+            const [day, month, year] = dateStr.split('.');
+            return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        }
+        
+        function formatDateForSave(dateStr) {
+            if (!dateStr) return '';
+            const [year, month, day] = dateStr.split('-');
+            return `${day}.${month}.${year}`;
+        }
+        
+        function shortBankName(fullName) {
+            if (!fullName) return '';
+            return fullName.replace(/А[ОКБ]\s|ПАО\s|«|»/g, '').split('(')[0];
+        }
+    </script>
+</body>
+</html>

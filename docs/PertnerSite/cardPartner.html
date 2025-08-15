@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карточка партнера</title>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --hover-color: #3a56d4;
+      --danger-color: #ef233c;
+      --archive-color: #6c757d;
+      --text-color: #2b2d42;
+      --light-gray: #f8f9fa;
+      --border-color: #e9ecef;
+      --modal-bg: rgba(0, 0, 0, 0.5);
+      --zebra-even: #f8f9fa;
+      --zebra-odd: #ffffff;
+      --checkbox-size: 16px;
+      --success-color: #2e7d32;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: var(--text-color);
+      background-color: #f5f7ff;
+      font-size: 15px; /* Увеличен базовый размер шрифта */
+    }
+    
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    h1 {
+      color: var(--text-color);
+      margin: 0;
+      font-weight: 600;
+      font-size: 24px; /* Увеличен размер заголовка */
+    }
+    
+    h2, h3, h4 {
+      color: var(--text-color);
+      margin: 0 0 15px 0;
+      font-weight: 600;
+      font-size: 18px; /* Увеличен размер подзаголовков */
+    }
+    
+    .form-section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .form-group {
+      flex: 1;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 6px; /* Увеличен отступ */
+      font-size: 14px; /* Увеличен размер меток */
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 10px 12px; /* Увеличен padding */
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 15px; /* Увеличен размер текста в полях */
+      height: 40px; /* Увеличен высота полей */
+      box-sizing: border-box;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+    }
+    
+    .btn {
+      padding: 10px 16px; /* Увеличен padding */
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px; /* Увеличен отступ между иконкой и текстом */
+      font-size: 15px; /* Увеличен размер текста кнопок */
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--hover-color);
+    }
+    
+    .btn-danger {
+      background-color: var(--danger-color);
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background-color: #d90429;
+    }
+    
+    .btn-success {
+      background-color: var(--success-color);
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background-color: #1b5e20;
+    }
+    
+    .btn-secondary {
+      background-color: var(--archive-color);
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+    
+    .footer-buttons {
+      display: flex;
+      gap: 12px; /* Увеличен отступ между кнопками */
+      margin-top: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px; /* Еще больше на мобильных */
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 12px; /* Увеличен отступ */
+      }
+      
+      .footer-buttons {
+        flex-direction: column;
+      }
+      
+      .form-control {
+        font-size: 16px; /* Увеличен размер текста на мобильных */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-container">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H6C5.46957 3 4.96086 3.21071 4.58579 3.58579C4.21071 3.96086 4 4.46957 4 5V21M16 21L20 21M16 21H10M4 21L8 21M10 7H14M10 11H14M10 15H14M8 21V5C8 4.73478 8.10536 4.48043 8.29289 4.29289C8.48043 4.10536 8.73478 4 9 4H11C11.2652 4 11.5196 4.10536 11.7071 4.29289C11.8946 4.48043 12 4.73478 12 5V21M8 21H12" stroke="#4361ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>Карточка партнера</h1>
+    </div>
+    
+    <form id="partnerForm">
+      <div class="form-section">
+        <!-- ФИО -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtFIO" class="form-label">Фамилия Имя Отчество:</label>
+            <input type="text" class="form-control" id="edtFIO" placeholder="Введите ФИО">
+          </div>
+        </div>
+
+        <!-- Номер договора -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtNumContract" class="form-label">Номер партнерского договора:</label>
+            <input type="text" class="form-control" id="edtNumContract" placeholder="Например: 123/456">
+          </div>
+        </div>
+
+        <!-- Даты начала и окончания договора -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtBegContract" class="form-label">Дата начала договора:</label>
+            <input type="date" class="form-control" id="edtBegContract">
+          </div>
+          <div class="form-group">
+            <label for="edtEndContract" class="form-label">Дата окончания договора:</label>
+            <input type="date" class="form-control" id="edtEndContract">
+          </div>
+        </div>
+
+        <!-- Телефон -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtPhone" class="form-label">Телефон:</label>
+            <input type="tel" class="form-control" id="edtPhone" placeholder="+7 (___) ___-__-__">
+          </div>
+        </div>
+      </div>
+
+      <!-- Банковские реквизиты -->
+      <div class="form-section">
+        <h4>Банковские реквизиты</h4>
+
+        <!-- Наименование банка -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtBankName" class="form-label">Наименование банка:</label>
+            <input type="text" class="form-control" id="edtBankName" placeholder="Введите название банка">
+          </div>
+        </div>
+
+        <!-- БИК -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtBankBIK" class="form-label">БИК:</label>
+            <input type="text" class="form-control" id="edtBankBIK" placeholder="Например: 044525225">
+          </div>
+        </div>
+
+        <!-- Р/С -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtBankRS" class="form-label">Расчетный счет (Р/С):</label>
+            <input type="text" class="form-control" id="edtBankRS" placeholder="Например: 40802810900000000000">
+          </div>
+        </div>
+
+        <!-- К/С -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edtBankKS" class="form-label">Корреспондентский счет (К/С):</label>
+            <input type="text" class="form-control" id="edtBankKS" placeholder="Например: 30101810400000000225">
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопки -->
+      <div class="footer-buttons">
+        <button type="submit" class="btn btn-success" id="btnSave">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 21V13H7V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 3V8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Сохранить
+        </button>
+        <button type="reset" class="btn btn-secondary" id="btnCancel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Отменить
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Загрузка данных партнера
+      fetch('partner.json')
+        .then(response => response.json())
+        .then(partners => {
+          if (partners.length > 0) {
+            const partner = partners[0];
+            fillPartnerForm(partner);
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка загрузки данных партнера:', error);
+        });
+
+      // Обработчик отправки формы
+      document.getElementById('partnerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Данные сохранены!');
+      });
+    });
+
+    function fillPartnerForm(partner) {
+      document.getElementById('edtFIO').value = partner.name;
+      document.getElementById('edtNumContract').value = partner.dog_num;
+      
+      // Преобразование дат из формата DD.MM.YYYY в YYYY-MM-DD
+      const [begDay, begMonth, begYear] = partner.dog_beg_date.split('.');
+      document.getElementById('edtBegContract').value = `${begYear}-${begMonth.padStart(2, '0')}-${begDay.padStart(2, '0')}`;
+      
+      const [endDay, endMonth, endYear] = partner.dog_end_date.split('.');
+      document.getElementById('edtEndContract').value = `${endYear}-${endMonth.padStart(2, '0')}-${endDay.padStart(2, '0')}`;
+      
+      document.getElementById('edtPhone').value = partner.phone;
+      document.getElementById('edtBankName').value = partner.bank_name;
+      document.getElementById('edtBankBIK').value = partner.bank_bik;
+      document.getElementById('edtBankRS').value = partner.bank_rs;
+      document.getElementById('edtBankKS').value = partner.bank_ks;
+    }
+  </script>
+</body>
+</html>

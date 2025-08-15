@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кабинет партнера</title>
+    <link rel="stylesheet" href="./partner.css">
+    <!-- подкачка jquery -->
+    <script src="./jquery-3.7.1.js"></script>
+</head>
+
+<script>
+    if (window.jQuery) {
+        var vJq = jQuery.fn.jquery;
+        console.log(vJq);
+        console.log("Действия для подключённого jQuery");
+    }
+    else {
+        console.log("jQuery НЕ подключен!");
+    }
+</script>
+
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo" href="#">
+                <img src=".\img\Логотип.jpg" width="100" height="30" alt="Логотип Регион">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li type="my-exit"><a href="#my-exit">Выход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <section class="hero">
+            <h1>Добро пожаловать в Личный кабинет партнера!</h1>
+            <button class="cta-button">Узнать больше</button>
+        </section>
+
+        <section class="features">
+            <button class="feature-button" onclick="window.location.href='./cardPartner.html';">
+                <h3>Карточка партнера</h3>
+                <p>Управление профилем партнера</p>
+            </div>
+            <button class="feature-button" onclick="window.location.href='./PartnerOrgList.html';">
+                <h3>Прикрепленные организации</h3>
+                <p>Список связанных организаций</p>
+            </div>
+            <button class="feature-button">
+                <h3>Начисления</h3>
+                <p>История финансовых операций</p>
+            </div>
+            <button class="feature-button">
+                <h3>Запросы</h3>
+                <p>Мониторинг текущих обращений</p>
+            </div>
+            <button class="feature-button" onclick="window.location.href='./listActs.html';">
+                <h3>Акты</h3>
+                <p>Договоры и документация</p>
+            </button>
+            <button class="feature-button">
+                <h3>Уведомления</h3>
+                <p>Системные оповещения</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <p>&copy; 2025 Личный кабинет партнера. Все права защищены.</p>
+    </footer>
+</body>
+<!-- Выход из программы -->
+<script>
+    $('li').on('click', function() {
+     if($(this).text() === "Выход") 
+     if (confirm("Вы действительно хотите выйти из программы?")) {
+        window.close();
+        }  
+    });
+    document.querySelector('h1').textContent = "Добро пожаловать "+sessionStorage.getItem("UserName")+" в Личный кабинет партнера!";
+//    function halloPartner() {
+//       document.getElementById('h1').textContent = "Добро пожаловать"+sessionStorage.getItem("UserName")+"в Личный кабинет партнера!";
+//    }
+</script>
+</html>

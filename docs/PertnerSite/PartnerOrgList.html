@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список подчиненных организаций</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f8fa;
+            color: #333;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .header-icon {
+            font-size: 28px;
+            color: #3498db;
+        }
+        
+        .toolbar {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .add-btn {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .edit-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .table-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background-color: #3498db;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tbody tr:nth-child(odd) {
+            background-color: white;
+        }
+        
+        tbody tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .selected {
+            background-color: #bbdefb !important;
+        }
+        
+        .status-filter {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+        
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .filter-checkbox input {
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+            margin-right: 5px;
+        }
+        
+        .status-1 .status-indicator {
+            background-color: #27ae60;
+        }
+        
+        .status-2 .status-indicator {
+            background-color: #f39c12;
+        }
+        
+        .status-3 .status-indicator {
+            background-color: #e74c3c;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            max-width: 90%;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .cancel-btn {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
+        .save-btn {
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-building header-icon"></i>
+        <h1>Список подчиненных организаций</h1>
+    </div>
+    
+    <div class="toolbar">
+        <button class="add-btn" id="addBtn">Новый</button>
+        <button class="edit-btn" id="editBtn">Редактировать</button>
+        <button class="delete-btn" id="deleteBtn">Удалить</button>
+        
+        <div class="status-filter">
+            <div class="filter-checkbox">
+                <input type="checkbox" id="filterActive">
+                <span class="status-indicator" style="background-color: #27ae60;"></span>
+                <label for="filterActive">Активен</label>
+            </div>
+            <div class="filter-checkbox">
+                <input type="checkbox" id="filterSuspended">
+                <span class="status-indicator" style="background-color: #f39c12;"></span>
+                <label for="filterSuspended">Приостановлен</label>
+            </div>
+            <div class="filter-checkbox">
+                <input type="checkbox" id="filterBlocked">
+                <span class="status-indicator" style="background-color: #e74c3c;"></span>
+                <label for="filterBlocked">Заблокирован</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="table-container">
+        <table id="orgsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID партнера</th>
+                    <th>Наименование</th>
+                    <th>ИНН</th>
+                    <th>КПП</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody id="orgsTableBody">
+                <!-- Данные будут загружены через JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Модальное окно для добавления/редактирования -->
+    <div class="modal" id="orgModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">Новая организация</span>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="orgForm">
+                <input type="hidden" id="orgId">
+                <div class="form-group">
+                    <label for="idPartner">ID партнера</label>
+                    <input type="number" id="idPartner" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Наименование</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="inn">ИНН</label>
+                    <input type="text" id="inn" required minlength="10">
+                </div>
+                <div class="form-group">
+                    <label for="kpp">КПП (необязательное)</label>
+                    <input type="text" id="kpp">
+                </div>
+                <div class="form-group">
+                    <label for="status">Статус</label>
+                    <select id="status" required>
+                        <option value="1">Активен</option>
+                        <option value="2">Приостановлен</option>
+                        <option value="3">Заблокирован</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" id="cancelBtn">Отмена</button>
+                    <button type="submit" class="save-btn">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Элементы DOM
+            const tableBody = document.getElementById('orgsTableBody');
+            const addBtn = document.getElementById('addBtn');
+            const editBtn = document.getElementById('editBtn');
+            const deleteBtn = document.getElementById('deleteBtn');
+            const orgModal = document.getElementById('orgModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const orgForm = document.getElementById('orgForm');
+            const closeModal = document.getElementById('closeModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const filterActive = document.getElementById('filterActive');
+            const filterSuspended = document.getElementById('filterSuspended');
+            const filterBlocked = document.getElementById('filterBlocked');
+            
+            // Поля формы
+            const orgIdInput = document.getElementById('orgId');
+            const idPartnerInput = document.getElementById('idPartner');
+            const nameInput = document.getElementById('name');
+            const innInput = document.getElementById('inn');
+            const kppInput = document.getElementById('kpp');
+            const statusInput = document.getElementById('status');
+            
+            let orgsData = [];
+            let filteredOrgsData = [];
+            let selectedOrgId = null;
+            let selectedRowIndex = -1;
+            
+            // Загрузка данных из JSON
+            fetch('orgs.json')
+                .then(response => response.json())
+                .then(data => {
+                    orgsData = data;
+                    loadFilters(); // Загружаем сохраненные фильтры
+                    applyFilters();
+                    // Выбираем первую строку по умолчанию
+                    if (filteredOrgsData.length > 0) {
+                        selectedOrgId = filteredOrgsData[0].id;
+                        selectedRowIndex = 0;
+                        renderTable();
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки данных:', error);
+                    alert('Не удалось загрузить данные организаций');
+                });
+            
+            // Загрузка сохраненных фильтров из localStorage
+            function loadFilters() {
+                const savedFilters = localStorage.getItem('orgFilters');
+                if (savedFilters) {
+                    const filters = JSON.parse(savedFilters);
+                    filterActive.checked = filters.active;
+                    filterSuspended.checked = filters.suspended;
+                    filterBlocked.checked = filters.blocked;
+                } else {
+                    // Значения по умолчанию, если нет сохраненных фильтров
+                    filterActive.checked = true;
+                    filterSuspended.checked = true;
+                    filterBlocked.checked = true;
+                }
+            }
+            
+            // Сохранение фильтров в localStorage
+            function saveFilters() {
+                const filters = {
+                    active: filterActive.checked,
+                    suspended: filterSuspended.checked,
+                    blocked: filterBlocked.checked
+                };
+                localStorage.setItem('orgFilters', JSON.stringify(filters));
+            }
+            
+            // Применение фильтров
+            function applyFilters() {
+                const activeFilter = filterActive.checked;
+                const suspendedFilter = filterSuspended.checked;
+                const blockedFilter = filterBlocked.checked;
+                
+                filteredOrgsData = orgsData.filter(org => {
+                    if (org.Status === 1 && activeFilter) return true;
+                    if (org.Status === 2 && suspendedFilter) return true;
+                    if (org.Status === 3 && blockedFilter) return true;
+                    return false;
+                });
+                
+                // Сохраняем фильтры
+                saveFilters();
+                
+                // Сброс выделения если выбранная организация не видна после фильтрации
+                if (selectedOrgId && !filteredOrgsData.some(org => org.id === selectedOrgId)) {
+                    selectedOrgId = null;
+                    selectedRowIndex = -1;
+                }
+                
+                renderTable();
+            }
+            
+            // Рендер таблицы
+            function renderTable() {
+                tableBody.innerHTML = '';
+                
+                filteredOrgsData.forEach((org, index) => {
+                    const row = document.createElement('tr');
+                    row.dataset.id = org.id;
+                    row.tabIndex = 0;
+                    
+                    if (org.id === selectedOrgId) {
+                        row.classList.add('selected');
+                        selectedRowIndex = index;
+                    }
+                    
+                    row.innerHTML = `
+                        <td>${org.id}</td>
+                        <td>${org.IdPartner}</td>
+                        <td>${org.Name}</td>
+                        <td>${org.INN}</td>
+                        <td>${org.KPP || '-'}</td>
+                        <td class="status-${org.Status}">
+                            <span class="status-indicator"></span>${getStatusText(org.Status)}
+                        </td>
+                    `;
+                    
+                    // Выделение строки при клике
+                    row.addEventListener('click', function() {
+                        selectedOrgId = org.id;
+                        selectedRowIndex = index;
+                        renderTable();
+                        row.focus();
+                    });
+                    
+                    tableBody.appendChild(row);
+                });
+            }
+            
+            // Получение текста статуса
+            function getStatusText(status) {
+                switch(status) {
+                    case 1: return 'Активен';
+                    case 2: return 'Приостановлен';
+                    case 3: return 'Заблокирован';
+                    default: return 'Неизвестно';
+                }
+            }
+            
+            // Открытие модального окна для добавления
+            addBtn.addEventListener('click', function() {
+                modalTitle.textContent = 'Новая организация';
+                orgForm.reset();
+                orgIdInput.value = '';
+                orgModal.style.display = 'flex';
+            });
+            
+            // Открытие модального окна для редактирования
+            editBtn.addEventListener('click', function() {
+                if (!selectedOrgId) {
+                    alert('Выберите организацию для редактирования');
+                    return;
+                }
+                
+                const org = orgsData.find(o => o.id === selectedOrgId);
+                if (org) {
+                    modalTitle.textContent = 'Редактирование организации';
+                    orgIdInput.value = org.id;
+                    idPartnerInput.value = org.IdPartner;
+                    nameInput.value = org.Name;
+                    innInput.value = org.INN;
+                    kppInput.value = org.KPP || '';
+                    statusInput.value = org.Status;
+                    orgModal.style.display = 'flex';
+                }
+            });
+            
+            // Удаление организации
+            deleteBtn.addEventListener('click', function() {
+                if (!selectedOrgId) {
+                    alert('Выберите организацию для удаления');
+                    return;
+                }
+                
+                if (confirm('Вы уверены, что хотите удалить выбранную организацию?')) {
+                    orgsData = orgsData.filter(org => org.id !== selectedOrgId);
+                    selectedOrgId = null;
+                    selectedRowIndex = -1;
+                    applyFilters();
+                }
+            });
+            
+            // Закрытие модального окна
+            function closeModalWindow() {
+                orgModal.style.display = 'none';
+            }
+            
+            closeModal.addEventListener('click', closeModalWindow);
+            cancelBtn.addEventListener('click', closeModalWindow);
+            
+            // Обработка отправки формы
+            orgForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Проверка ИНН
+                if (innInput.value.length < 10) {
+                    alert('ИНН должен содержать минимум 10 символов');
+                    innInput.focus();
+                    return;
+                }
+                
+                const orgData = {
+                    IdPartner: parseInt(idPartnerInput.value),
+                    Name: nameInput.value,
+                    INN: innInput.value,
+                    KPP: kppInput.value || null,
+                    Status: parseInt(statusInput.value)
+                };
+                
+                if (orgIdInput.value) {
+                    // Редактирование существующей организации
+                    const orgId = parseInt(orgIdInput.value);
+                    const index = orgsData.findIndex(o => o.id === orgId);
+                    
+                    if (index !== -1) {
+                        orgsData[index] = { ...orgsData[index], ...orgData };
+                    }
+                } else {
+                    // Добавление новой организации
+                    const newId = orgsData.length > 0 ? Math.max(...orgsData.map(o => o.id)) + 1 : 1;
+                    orgsData.push({ id: newId, ...orgData });
+                    selectedOrgId = newId;
+                    selectedRowIndex = orgsData.length - 1;
+                }
+                
+                closeModalWindow();
+                applyFilters();
+            });
+            
+            // Закрытие модального окна при клике вне его
+            window.addEventListener('click', function(e) {
+                if (e.target === orgModal) {
+                    closeModalWindow();
+                }
+            });
+            
+            // Обработчики фильтров
+            filterActive.addEventListener('change', applyFilters);
+            filterSuspended.addEventListener('change', applyFilters);
+            filterBlocked.addEventListener('change', applyFilters);
+            
+            // Глобальная навигация по таблице
+            document.addEventListener('keydown', function(e) {
+                if (filteredOrgsData.length === 0) return;
+                
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (selectedRowIndex <= 0) {
+                        selectedRowIndex = filteredOrgsData.length - 1;
+                    } else {
+                        selectedRowIndex--;
+                    }
+                    selectedOrgId = filteredOrgsData[selectedRowIndex].id;
+                    renderTable();
+                    tableBody.children[selectedRowIndex].focus();
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (selectedRowIndex >= filteredOrgsData.length - 1) {
+                        selectedRowIndex = 0;
+                    } else {
+                        selectedRowIndex++;
+                    }
+                    selectedOrgId = filteredOrgsData[selectedRowIndex].id;
+                    renderTable();
+                    tableBody.children[selectedRowIndex].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
