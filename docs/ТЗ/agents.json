@@ -1,0 +1,728 @@
+{
+  "result": {
+    "fields": {
+      "id": {
+        "type": "integer",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "ID",
+        "upperName": "ID"
+      },
+      "title": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Название",
+        "upperName": "TITLE"
+      },
+      "xmlId": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Внешний код",
+        "upperName": "XML_ID"
+      },
+      "createdTime": {
+        "type": "datetime",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Когда создан",
+        "upperName": "CREATED_TIME"
+      },
+      "updatedTime": {
+        "type": "datetime",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Когда обновлён",
+        "upperName": "UPDATED_TIME"
+      },
+      "createdBy": {
+        "type": "user",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Кем создан",
+        "upperName": "CREATED_BY"
+      },
+      "updatedBy": {
+        "type": "user",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Кем обновлён",
+        "upperName": "UPDATED_BY"
+      },
+      "assignedById": {
+        "type": "user",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Ответственный",
+        "upperName": "ASSIGNED_BY_ID"
+      },
+      "opened": {
+        "type": "boolean",
+        "isRequired": true,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Доступно для всех",
+        "upperName": "OPENED"
+      },
+      "webformId": {
+        "type": "integer",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Создано CRM-формой",
+        "upperName": "WEBFORM_ID"
+      },
+      "companyId": {
+        "type": "crm_company",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Компания",
+        "settings": {
+          "parentEntityTypeId": 4
+        },
+        "upperName": "COMPANY_ID"
+      },
+      "contactId": {
+        "type": "crm_contact",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "isDeprecated": true,
+        "title": "Контакт",
+        "upperName": "CONTACT_ID"
+      },
+      "contactIds": {
+        "type": "crm_contact",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": true,
+        "isDynamic": false,
+        "title": "CONTACT_IDS",
+        "upperName": "CONTACT_IDS"
+      },
+      "contacts": {
+        "type": "crm_contact",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": true,
+        "isDynamic": false,
+        "title": "CONTACTS",
+        "upperName": "CONTACTS"
+      },
+      "categoryId": {
+        "type": "crm_category",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Воронка",
+        "upperName": "CATEGORY_ID"
+      },
+      "movedTime": {
+        "type": "datetime",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Когда передвинут",
+        "upperName": "MOVED_TIME"
+      },
+      "movedBy": {
+        "type": "user",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Кем передвинут",
+        "upperName": "MOVED_BY"
+      },
+      "stageId": {
+        "type": "crm_status",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "statusType": "DYNAMIC_172_STAGE_3",
+        "title": "Стадия",
+        "upperName": "STAGE_ID"
+      },
+      "previousStageId": {
+        "type": "crm_status",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "statusType": "DYNAMIC_172_STAGE_3",
+        "title": "Предыдущая стадия",
+        "upperName": "PREVIOUS_STAGE_ID"
+      },
+      "lastActivityBy": {
+        "type": "user",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Кем осуществлена последняя активность в таймлайне",
+        "upperName": "LAST_ACTIVITY_BY"
+      },
+      "lastActivityTime": {
+        "type": "datetime",
+        "isRequired": false,
+        "isReadOnly": true,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Последняя активность",
+        "upperName": "LAST_ACTIVITY_TIME"
+      },
+      "parentId1": {
+        "type": "crm_entity",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Лид",
+        "settings": {
+          "parentEntityTypeId": 1
+        },
+        "upperName": "PARENT_ID_1"
+      },
+      "parentId129": {
+        "type": "crm_entity",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Специалисты",
+        "settings": {
+          "parentEntityTypeId": 129
+        },
+        "upperName": "PARENT_ID_129"
+      },
+      "parentId177": {
+        "type": "crm_entity",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": false,
+        "title": "Документы Агента",
+        "settings": {
+          "parentEntityTypeId": 177
+        },
+        "upperName": "PARENT_ID_177"
+      },
+      "ufCrm3_1632460684": {
+        "type": "string",
+        "isRequired": true,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Телефон",
+        "listLabel": "",
+        "formLabel": "Телефон",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 1,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1632460684"
+      },
+      "ufCrm3_1632460700": {
+        "type": "integer",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Сколько organisations ведёт",
+        "listLabel": "",
+        "formLabel": "Сколько organisations ведёт",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "MIN_VALUE": 0,
+          "MAX_VALUE": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1632460700"
+      },
+      "ufCrm3_1632460713": {
+        "type": "string",
+        "isRequired": true,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Ссылка на головной лид или Айди",
+        "listLabel": "",
+        "formLabel": "Ссылка на головной лид или Айди",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 1,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1632460713"
+      },
+      "ufCrm3_1632460728": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Площадка на которой размещают",
+        "listLabel": "",
+        "formLabel": "Площадка на которой размещают",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 1,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1632460728"
+      },
+      "ufCrm3_1634037227266": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Комментарий",
+        "listLabel": "",
+        "formLabel": "Комментарий",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 10,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1634037227266"
+      },
+      "ufCrm3_1634037425687": {
+        "type": "file",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": true,
+        "isDynamic": true,
+        "title": "Договор",
+        "listLabel": "",
+        "formLabel": "Договор",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "LIST_WIDTH": 0,
+          "LIST_HEIGHT": 0,
+          "MAX_SHOW_SIZE": 0,
+          "MAX_ALLOWED_SIZE": 0,
+          "EXTENSIONS": [],
+          "TARGET_BLANK": "Y"
+        },
+        "upperName": "UF_CRM_3_1634037425687"
+      },
+      "ufCrm3_1639467656": {
+        "type": "integer",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": true,
+        "isDynamic": true,
+        "title": "ИНН организаций агента",
+        "listLabel": "",
+        "formLabel": "ИНН организаций агента",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "MIN_VALUE": 0,
+          "MAX_VALUE": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1639467656"
+      },
+      "ufCrm3_1644319247": {
+        "type": "date",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Дата подписания",
+        "listLabel": "",
+        "formLabel": "Дата подписания",
+        "filterLabel": "",
+        "settings": {
+          "DEFAULT_VALUE": {
+            "TYPE": "NONE",
+            "VALUE": ""
+          }
+        },
+        "upperName": "UF_CRM_3_1644319247"
+      },
+      "ufCrm3_1648642539": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Почта",
+        "listLabel": "",
+        "formLabel": "Почта",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 1,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1648642539"
+      },
+      "ufCrm3_1654755478": {
+        "type": "crm",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": true,
+        "isDynamic": true,
+        "title": "Организации (ссылки)",
+        "listLabel": "",
+        "formLabel": "Организации (ссылки)",
+        "filterLabel": "",
+        "settings": {
+          "LEAD": "Y",
+          "COMPANY": "Y"
+        },
+        "upperName": "UF_CRM_3_1654755478"
+      },
+      "ufCrm3_1664370202": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Комментарий",
+        "listLabel": "",
+        "formLabel": "Комментарий",
+        "filterLabel": "",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 1,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1664370202"
+      },
+      "ufCrm3_1681101535389": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Причина оттока",
+        "listLabel": "Причина оттока",
+        "formLabel": "Причина оттока",
+        "filterLabel": "Причина оттока",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 1,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": null
+        },
+        "upperName": "UF_CRM_3_1681101535389"
+      },
+      "ufCrm3_1681101662701": {
+        "type": "file",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": true,
+        "isDynamic": true,
+        "title": "Запись и/или скрины",
+        "listLabel": "Запись и/или скрины",
+        "formLabel": "Запись и/или скрины",
+        "filterLabel": "Запись и/или скрины",
+        "settings": {
+          "SIZE": 20,
+          "LIST_WIDTH": 0,
+          "LIST_HEIGHT": 0,
+          "MAX_SHOW_SIZE": 0,
+          "MAX_ALLOWED_SIZE": 0,
+          "EXTENSIONS": [],
+          "TARGET_BLANK": "Y"
+        },
+        "upperName": "UF_CRM_3_1681101662701"
+      },
+      "ufCrm3_1685595236509": {
+        "type": "url",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": true,
+        "isDynamic": true,
+        "title": "Ссылка на соц. сети",
+        "listLabel": "Ссылка на соц. сети",
+        "formLabel": "Ссылка на соц. сети",
+        "filterLabel": "Ссылка на соц. сети",
+        "settings": {
+          "POPUP": "Y",
+          "SIZE": 20,
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1685595236509"
+      },
+      "ufCrm3_1686146328": {
+        "type": "employee",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Куратор",
+        "listLabel": "",
+        "formLabel": "Куратор",
+        "filterLabel": "",
+        "settings": [],
+        "upperName": "UF_CRM_3_1686146328"
+      },
+      "ufCrm3_1688467252488": {
+        "type": "url",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Папка с документами",
+        "listLabel": "Папка с документами",
+        "formLabel": "Папка с документами",
+        "filterLabel": "Папка с документами",
+        "settings": {
+          "POPUP": "Y",
+          "SIZE": 20,
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": ""
+        },
+        "upperName": "UF_CRM_3_1688467252488"
+      },
+      "ufCrm3_1688646937575": {
+        "type": "enumeration",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "items": [
+          {
+            "ID": "6090",
+            "VALUE": "ООО \"АРМ\""
+          },
+          {
+            "ID": "6091",
+            "VALUE": "ООО \"РИАЛ\""
+          }
+        ],
+        "title": "Договор подписан с:",
+        "listLabel": "Договор подписан с:",
+        "formLabel": "Договор подписан с:",
+        "filterLabel": "Договор подписан с:",
+        "settings": {
+          "DISPLAY": "LIST",
+          "LIST_HEIGHT": 1,
+          "CAPTION_NO_VALUE": "",
+          "SHOW_NO_VALUE": "Y"
+        },
+        "upperName": "UF_CRM_3_1688646937575"
+      },
+      "ufCrm3_1688646980380": {
+        "type": "enumeration",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "items": [
+          {
+            "ID": "6092",
+            "VALUE": "Юридическое лицо"
+          },
+          {
+            "ID": "6093",
+            "VALUE": "Физическое лицо"
+          },
+          {
+            "ID": "6094",
+            "VALUE": "Самозанятый"
+          }
+        ],
+        "title": "Вид договора",
+        "listLabel": "Вид договора",
+        "formLabel": "Вид договора",
+        "filterLabel": "Вид договора",
+        "settings": {
+          "DISPLAY": "LIST",
+          "LIST_HEIGHT": 1,
+          "CAPTION_NO_VALUE": "",
+          "SHOW_NO_VALUE": "Y"
+        },
+        "upperName": "UF_CRM_3_1688646980380"
+      },
+      "ufCrm3_1688647024954": {
+        "type": "string",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Процент по договору",
+        "listLabel": "Процент по договору",
+        "formLabel": "Процент по договору",
+        "filterLabel": "Процент по договору",
+        "settings": {
+          "SIZE": 20,
+          "ROWS": 1,
+          "REGEXP": "",
+          "MIN_LENGTH": 0,
+          "MAX_LENGTH": 0,
+          "DEFAULT_VALUE": null
+        },
+        "upperName": "UF_CRM_3_1688647024954"
+      },
+      "ufCrm3_1688647054930": {
+        "type": "date",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Срок действия договора",
+        "listLabel": "Срок действия договора",
+        "formLabel": "Срок действия договора",
+        "filterLabel": "Срок действия договора",
+        "settings": {
+          "DEFAULT_VALUE": {
+            "TYPE": "NONE",
+            "VALUE": ""
+          }
+        },
+        "upperName": "UF_CRM_3_1688647054930"
+      },
+      "ufCrm3_1711021737": {
+        "type": "boolean",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "Клиент ЭТПР",
+        "listLabel": "",
+        "formLabel": "Клиент ЭТПР",
+        "filterLabel": "",
+        "settings": {
+          "DEFAULT_VALUE": 0,
+          "DISPLAY": "DROPDOWN",
+          "LABEL": ["", ""],
+          "LABEL_CHECKBOX": ""
+        },
+        "upperName": "UF_CRM_3_1711021737"
+      },
+      "ufCrm3_1685595169": {
+        "type": "date",
+        "isRequired": false,
+        "isReadOnly": false,
+        "isImmutable": false,
+        "isMultiple": false,
+        "isDynamic": true,
+        "title": "День рождения",
+        "listLabel": "",
+        "formLabel": "День рождения",
+        "filterLabel": "",
+        "settings": {
+          "DEFAULT_VALUE": {
+            "TYPE": "NONE",
+            "VALUE": ""
+          }
+        },
+        "upperName": "UF_CRM_3_1685595169"
+      }
+    }
+  },
+  "time": {
+    "start": 1755255656.13395,
+    "finish": 1755255656.20953,
+    "duration": 0.0755820274353027,
+    "processing": 0.0437850952148438,
+    "date_start": "2025-08-15T16:00:56+05:00",
+    "date_finish": "2025-08-15T16:00:56+05:00"
+  }
+}

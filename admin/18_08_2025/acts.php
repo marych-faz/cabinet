@@ -30,10 +30,11 @@ try {
                 COALESCE(SUM(ad.placement_amount), 0) AS total_placement_amount,
                 COALESCE(SUM(ad.operator_payment), 0) AS total_operator_payment,
                 COALESCE(SUM(ad.commission_amount), 0) AS total_commission_amount,
-                (SELECT COALESCE(SUM(ap.summa), 0) FROM act_payments ap WHERE ap.act_id = a.id) AS total_payments
+                COALESCE(SUM(ap.summa), 0) AS total_payments
               FROM acts a
               LEFT JOIN users u ON u.id = a.partner_id
-              LEFT JOIN act_detail ad ON ad.act_id = a.id";
+              LEFT JOIN act_detail ad ON ad.act_id = a.id
+              LEFT JOIN act_payments ap ON ap.act_id = a.id";
 
     $where = [];
     $params = [];

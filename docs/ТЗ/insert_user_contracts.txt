@@ -1,0 +1,9 @@
+INSERT INTO user_contracts (user_id, number, start_date, end_date, status)
+SELECT 
+  id, 
+  dog_num, 
+  dog_beg_date, 
+  dog_end_date, 
+  CASE WHEN dog_end_date >= CURDATE() THEN 2 ELSE 3 END
+FROM users 
+WHERE dog_num != '' AND dog_beg_date IS NOT NULL;
