@@ -73,35 +73,3 @@ function fetchBankDetails() {
 function refreshCaptcha() {
     document.getElementById('captcha-image').src = 'captcha.php?t=' + Date.now();
 }
-
-// auth.js - дополните существующий код
-
-function fetchBankDetails() {
-    const bik = document.getElementById('bank_bik').value;
-    const errorElement = document.getElementById('bik-error');
-    const error = {code: 0, message: ''};
-    
-    if (!validateBik(bik, error)) {
-        document.getElementById('bank_bik').style.borderColor = '#dc2626';
-        errorElement.textContent = error.message;
-        return;
-    }
-    
-    fetch('get_bank.php?bik=' + bik)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('bank_name').value = data.bank.name;
-                document.getElementById('bank_ks').value = data.bank.ks;
-                document.getElementById('bank_bik').style.borderColor = '';
-                errorElement.textContent = '';
-            } else {
-                document.getElementById('bank_bik').style.borderColor = '#dc2626';
-                errorElement.textContent = 'Банк не найден в базе. Проверьте БИК';
-                // Автоматическое скрытие через 5 секунд
-                setTimeout(() => {
-                    errorElement.textContent = '';
-                }, 5000);
-            }
-        });
-}
