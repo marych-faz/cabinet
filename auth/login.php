@@ -32,6 +32,11 @@
         <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
       </div>
       
+      <!-- Ссылка "Забыли пароль?" -->
+      <div class="forgot-password">
+        <a href="forgot_password.php" class="form-link">Забыли пароль?</a>
+      </div>
+      
       <button type="submit" class="btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="margin-right: 8px;">
           <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>

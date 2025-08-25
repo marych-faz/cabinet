@@ -38,7 +38,7 @@ body {
 
 /* Специфические стили ТОЛЬКО для формы регистрации */
 .auth-container.register {
-  max-width: 800px !important; /* Широкая форма */
+  max-width: 900px !important; /* Широкая форма */
 }
 
 .auth-container.register .auth-body {
@@ -54,6 +54,7 @@ body {
   font-size: 0.9rem !important;
 }
 
+/* ДВУХКОЛОНОЧНАЯ ЛAYOUT ДЛЯ РЕГИСТРАЦИИ */
 .auth-container.register .form-row {
   display: flex;
   gap: 20px;
@@ -72,25 +73,151 @@ body {
 .auth-container.register .section-title {
   margin: 20px 0 15px !important;
   font-size: 1.1rem !important;
+  color: var(--primary) !important;
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 8px;
 }
 
-/* Остальные стили (общие для обеих форм) */
+/* Стили для выбора статуса */
+.status-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.status-option {
+  cursor: pointer;
+}
+
+.status-option input[type="radio"] {
+  display: none;
+}
+
+.option-card {
+  padding: 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.status-option input[type="radio"]:checked + .option-card {
+  border-color: var(--primary);
+  background-color: #f0f4ff;
+}
+
+.option-card h4 {
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.option-card p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin: 0;
+}
+
+/* Стили для ошибок валидации */
+.validation-error {
+  font-size: 0.75rem;
+  color: var(--danger);
+  margin-top: 4px;
+  min-height: 1em;
+}
+
+/* Стили для согласия с политикой */
+.privacy-consent {
+  margin: 20px 0;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+.privacy-consent input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.privacy-consent a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.privacy-consent a:hover {
+  text-decoration: underline;
+}
+
+/* CAPTCHA в одну строку */
+.auth-container.register .captcha-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.auth-container.register .captcha-image {
+  height: 50px;
+  width: 180px;
+  border-radius: 6px;
+  border: 1px solid var(--gray);
+  object-fit: cover;
+  background-color: #f5f5f5;
+  padding: 5px;
+}
+
+.auth-container.register .captcha-refresh {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.auth-container.register .captcha-refresh:hover {
+  background-color: #f0f4ff;
+}
+
+.auth-container.register .captcha-refresh svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Стили для подсказки пароля */
+.password-hint {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: 4px;
+}
+
+/* Шапка авторизации в одну строку */
 .auth-header {
   background: var(--primary);
   color: white;
   padding: 24px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.auth-header-text {
+  flex: 1;
 }
 
 .logo {
   width: 60px;
   height: 60px;
-  margin: 0 auto 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .logo svg {
@@ -161,29 +288,20 @@ body {
   background: var(--primary-dark);
 }
 
-.captcha-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+/* Стили для ссылки "Забыли пароль?" */
+.forgot-password {
+  text-align: right;
+  margin: -10px 0 20px 0;
 }
 
-.captcha-image {
-  height: 50px;
-  border-radius: 6px;
-  border: 1px solid var(--gray);
-  flex: 1;
-}
-
-.captcha-refresh {
-  background: none;
-  border: none;
-  color: var(--primary);
-  cursor: pointer;
+.forgot-password a {
   font-size: 0.875rem;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
 }
 
 .form-footer {
@@ -232,6 +350,11 @@ body {
     flex-direction: column;
     gap: 12px;
   }
+  
+  .auth-container.register .captcha-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 480px) {
@@ -246,157 +369,14 @@ body {
   .auth-container.register .auth-body {
     padding: 20px !important;
   }
-}
-/* Стили для CAPTCHA */
-.auth-container.register .captcha-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 15px 0;
-}
-
-.auth-container.register .captcha-image {
-    height: 50px;
-    width: 180px; /* Фиксированная ширина */
-    border-radius: 6px;
-    border: 1px solid var(--gray);
-    object-fit: cover; /* Чтобы изображение не искажалось */
-    background-color: #f5f5f5;
-    padding: 5px;
-}
-
-.auth-container.register .captcha-refresh {
-    background: none;
-    border: none;
-    color: var(--primary);
-    cursor: pointer;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 8px 12px;
-    border-radius: 6px;
-    transition: all 0.2s;
-}
-
-.auth-container.register .captcha-refresh:hover {
-    background-color: #f0f4ff;
-}
-
-.auth-container.register .captcha-refresh svg {
-    width: 16px;
-    height: 16px;
-}
-/* Дополнительное уменьшение высоты формы регистрации */
-.auth-container.register .auth-body {
-    padding: 15px 30px !important; /* Уменьшаем вертикальные отступы */
-}
-
-.auth-container.register .form-group {
-    margin-bottom: 10px !important; /* Уменьшаем отступы между полями */
-}
-
-.auth-container.register .form-control {
-    padding: 8px 12px !important; /* Уменьшаем высоту полей ввода */
-    font-size: 0.85rem !important;
-}
-
-.auth-container.register .btn {
-    padding: 9px 15px !important; /* Уменьшаем кнопку */
-    font-size: 0.9rem !important;
-}
-
-.auth-container.register .section-title {
-    margin: 15px 0 10px !important; /* Уменьшаем отступы у заголовков */
-    font-size: 1rem !important;
-}
-
-.auth-container.register .captcha-container {
-    margin: 10px 0 !important; /* Уменьшаем отступы у CAPTCHA */
-}
-
-.auth-container.register .form-footer {
-    margin-top: 12px !important; /* Уменьшаем отступ у подвала */
-}
-@media (max-width: 480px) {
-    .auth-container.register .auth-body {
-        padding: 12px 15px !important;
-    }
-    
-    .auth-container.register .form-control {
-        padding: 7px 10px !important;
-    }
-}
-/* Стили для выбора статуса */
-.status-options {
-    display: flex;
+  
+  .auth-header {
     flex-direction: column;
-    gap: 12px;
-}
-
-.status-option {
-    cursor: pointer;
-}
-
-.status-option input[type="radio"] {
-    display: none;
-}
-
-.option-card {
-    padding: 16px;
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.status-option input[type="radio"]:checked + .option-card {
-    border-color: var(--primary);
-    background-color: #f0f4ff;
-}
-
-.option-card h4 {
-    margin-bottom: 4px;
-    color: var(--text);
-}
-
-.option-card p {
-    font-size: 0.875rem;
-    color: var(--gray);
-    margin: 0;
-}
-
-/* Стили для ошибок валидации */
-.validation-error {
-    font-size: 0.75rem;
-    color: var(--danger);
-    margin-top: 4px;
-    min-height: 1em;
-}
-
-/* Стили для согласия с политикой */
-.privacy-consent {
-    margin: 20px 0;
-    padding: 12px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    font-size: 0.875rem;
-}
-
-.privacy-consent input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-.privacy-consent a {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.privacy-consent a:hover {
-    text-decoration: underline;
-}
-
-/* Иконка в шапке слева */
-.auth-header .logo {
-    float: left;
-    margin-right: 15px;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .auth-container.login {
+    max-width: 95% !important;
+  }
 }
